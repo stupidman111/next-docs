@@ -1,6 +1,7 @@
 "use client";
 
 import { FontSizeExtension } from "@/extensions/font-size";
+import { LineHeightExtension } from "@/extensions/line-height";
 import { useEditorState } from "@/store/use-editor-store";
 import { Color } from "@tiptap/extension-color";
 import FontFamily from "@tiptap/extension-font-family";
@@ -86,6 +87,10 @@ const Editor = () => {
         types: ["heading", "paragraph"],
       }),
       FontSizeExtension,
+      LineHeightExtension.configure({
+        types: ["heading", "paragraph"],
+        defaultLineHeight: "normal",
+      }),
     ],
     content: `
       <table>
