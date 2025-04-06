@@ -38,8 +38,8 @@ export const RenameDialog = ({
 
     update({ id: documentId, title: title.trim() || "Untitled" }).finally(
       () => {
-        setIsUpdating(true);
-        () => setOpen(false);
+        setIsUpdating(false);
+        setOpen(false);
       }
     );
   };
@@ -77,7 +77,9 @@ export const RenameDialog = ({
             <Button
               type="submit"
               disabled={isUpdating}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
             >
               Save
             </Button>
