@@ -28,7 +28,7 @@ export const RenameDialog = ({
   children,
 }: RenameDialogProps) => {
   const update = useMutation(api.documents.updateById);
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false); //当 isUpdating 为 true 时，相关按钮会被禁用
   const [title, setTitle] = useState(initialTitle);
   const [open, setOpen] = useState(false);
 
