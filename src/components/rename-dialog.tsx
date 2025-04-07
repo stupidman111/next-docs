@@ -2,6 +2,7 @@
 
 import { useMutation } from "convex/react";
 import React, { useState } from "react";
+import { toast } from "sonner";
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
 import { Button } from "./ui/button";
@@ -36,12 +37,13 @@ export const RenameDialog = ({
     e.preventDefault();
     setIsUpdating(true);
 
-    update({ id: documentId, title: title.trim() || "Untitled" }).finally(
-      () => {
+    update({ id: documentId, title: title.trim() || "Untitled" })
+      .catch(() => toast.error("Something went wrong"))
+      .then(() => toast.success("Document renamed"))
+      .finally(() => {
         setIsUpdating(false);
         setOpen(false);
-      }
-    );
+      });
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
